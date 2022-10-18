@@ -1,0 +1,169 @@
+{
+  "errors":
+  [
+    {
+      "component": "general",
+      "errorCode": "2519",
+      "formattedMessage": "Warning: This declaration shadows an existing declaration.\n  --> myFile.sol:53:21:\n   |\n53 | \tfunction hashTo256(bytes32 hash) public pure returns (uint _r){\n   | \t                   ^^^^^^^^^^^^\nNote: The shadowed declaration is here:\n  --> myFile.sol:58:2:\n   |\n58 | \tfunction hash(bytes32 input) public returns (uint _r) {\n   | \t^ (Relevant source part starts here and spans across multiple lines).\n\n",
+      "message": "This declaration shadows an existing declaration.",
+      "secondarySourceLocations":
+      [
+        {
+          "end": 1852,
+          "file": "myFile.sol",
+          "message": "The shadowed declaration is here:",
+          "start": 1683
+        }
+      ],
+      "severity": "warning",
+      "sourceLocation":
+      {
+        "end": 1566,
+        "file": "myFile.sol",
+        "start": 1554
+      },
+      "type": "Warning"
+    },
+    {
+      "component": "general",
+      "errorCode": "2462",
+      "formattedMessage": "Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it \"abstract\" is sufficient.\n  --> myFile.sol:31:2:\n   |\n31 | \tconstructor () public {\n   | \t^ (Relevant source part starts here and spans across multiple lines).\n\n",
+      "message": "Visibility for constructor is ignored. If you want the contract to be non-deployable, making it \"abstract\" is sufficient.",
+      "severity": "warning",
+      "sourceLocation":
+      {
+        "end": 883,
+        "file": "myFile.sol",
+        "start": 814
+      },
+      "type": "Warning"
+    },
+    {
+      "component": "general",
+      "errorCode": "5878",
+      "formattedMessage": "Warning: Failure condition of 'send' ignored. Consider using 'transfer' instead.\n  --> myFile.sol:38:4:\n   |\n38 | \t\t\tpayable(msg.sender).send(msg.value); // Refund\n   | \t\t\t^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n",
+      "message": "Failure condition of 'send' ignored. Consider using 'transfer' instead.",
+      "severity": "warning",
+      "sourceLocation":
+      {
+        "end": 1124,
+        "file": "myFile.sol",
+        "start": 1089
+      },
+      "type": "Warning"
+    },
+    {
+      "component": "general",
+      "errorCode": "5878",
+      "formattedMessage": "Warning: Failure condition of 'send' ignored. Consider using 'transfer' instead.\n   --> myFile.sol:109:4:\n    |\n109 | \t\t\tpayable(msg.sender).send(calcWinnings(r.value, r.chance) - seedCost);\n    | \t\t\t^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n",
+      "message": "Failure condition of 'send' ignored. Consider using 'transfer' instead.",
+      "severity": "warning",
+      "sourceLocation":
+      {
+        "end": 3464,
+        "file": "myFile.sol",
+        "start": 3396
+      },
+      "type": "Warning"
+    },
+    {
+      "component": "general",
+      "errorCode": "5878",
+      "formattedMessage": "Warning: Failure condition of 'send' ignored. Consider using 'transfer' instead.\n   --> myFile.sol:128:3:\n    |\n128 | \t\tpayable(msg.sender).send(r.value);\n    | \t\t^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n",
+      "message": "Failure condition of 'send' ignored. Consider using 'transfer' instead.",
+      "severity": "warning",
+      "sourceLocation":
+      {
+        "end": 4007,
+        "file": "myFile.sol",
+        "start": 3974
+      },
+      "type": "Warning"
+    },
+    {
+      "component": "general",
+      "errorCode": "2018",
+      "formattedMessage": "Warning: Function state mutability can be restricted to pure\n  --> myFile.sol:58:2:\n   |\n58 | \tfunction hash(bytes32 input) public returns (uint _r) {\n   | \t^ (Relevant source part starts here and spans across multiple lines).\n\n",
+      "message": "Function state mutability can be restricted to pure",
+      "severity": "warning",
+      "sourceLocation":
+      {
+        "end": 1852,
+        "file": "myFile.sol",
+        "start": 1683
+      },
+      "type": "Warning"
+    },
+    {
+      "component": "general",
+      "errorCode": "2018",
+      "formattedMessage": "Warning: Function state mutability can be restricted to view\n  --> myFile.sol:73:2:\n   |\n73 | \tfunction getResult(bytes32 secret) public returns (uint _r){\n   | \t^ (Relevant source part starts here and spans across multiple lines).\n\n",
+      "message": "Function state mutability can be restricted to view",
+      "severity": "warning",
+      "sourceLocation":
+      {
+        "end": 2410,
+        "file": "myFile.sol",
+        "start": 2106
+      },
+      "type": "Warning"
+    },
+    {
+      "component": "general",
+      "errorCode": "2018",
+      "formattedMessage": "Warning: Function state mutability can be restricted to view\n  --> myFile.sol:81:2:\n   |\n81 | \tfunction didWin(bytes32 secret) public returns (bool _r) {\n   | \t^ (Relevant source part starts here and spans across multiple lines).\n\n",
+      "message": "Function state mutability can be restricted to view",
+      "severity": "warning",
+      "sourceLocation":
+      {
+        "end": 2771,
+        "file": "myFile.sol",
+        "start": 2414
+      },
+      "type": "Warning"
+    },
+    {
+      "component": "general",
+      "errorCode": "2018",
+      "formattedMessage": "Warning: Function state mutability can be restricted to pure\n  --> myFile.sol:92:2:\n   |\n92 | \tfunction calcWinnings(uint256 value, uint chance) public view returns (uint256 _r) {\n   | \t^ (Relevant source part starts here and spans across multiple lines).\n\n",
+      "message": "Function state mutability can be restricted to pure",
+      "severity": "warning",
+      "sourceLocation":
+      {
+        "end": 3024,
+        "file": "myFile.sol",
+        "start": 2775
+      },
+      "type": "Warning"
+    },
+    {
+      "component": "general",
+      "errorCode": "7400",
+      "formattedMessage": "Warning: Requested contract \"EtherGame\" does not exist in source \"myFile.sol\".\n\n",
+      "message": "Requested contract \"EtherGame\" does not exist in source \"myFile.sol\".",
+      "severity": "warning",
+      "type": "Warning"
+    },
+    {
+      "component": "general",
+      "errorCode": "5523",
+      "formattedMessage": "Warning: The SMTChecker pragma has been deprecated and will be removed in the future. Please use the \"model checker engine\" compiler setting to activate the SMTChecker instead. If the pragma is enabled, all engines will be used.\n --> myFile.sol:3:1:\n  |\n3 | pragma experimental SMTChecker;\n  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n",
+      "message": "The SMTChecker pragma has been deprecated and will be removed in the future. Please use the \"model checker engine\" compiler setting to activate the SMTChecker instead. If the pragma is enabled, all engines will be used.",
+      "severity": "warning",
+      "sourceLocation":
+      {
+        "end": 87,
+        "file": "myFile.sol",
+        "start": 56
+      },
+      "type": "Warning"
+    }
+  ],
+  "sources":
+  {
+    "myFile.sol":
+    {
+      "id": 0
+    }
+  }
+}

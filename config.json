@@ -1,0 +1,21 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "myFile.sol": {
+      "urls": ["/home/khaled/Uni/Project/master-project/race.sol"]
+    }
+  },
+  "settings": {
+    "modelChecker": {
+      "contracts": {
+        "myFile.sol": ["EtherGame"]
+      },
+      "engine": "all",
+      "solvers": ["cvc4", "smtlib2", "z3"],
+      "targets": ["assert"],
+      "timeout": 2000,
+      "invariants": ["contract", "reentrancy"],
+      "showUnproved": true
+    }
+  }
+}

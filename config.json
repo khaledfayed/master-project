@@ -8,7 +8,7 @@
   "settings": {
     "modelChecker": {
       "contracts": {
-        "myFile.sol": ["EtherGame"]
+        "myFile.sol": ["HonestDice"]
       },
       "engine": "all",
       "solvers": ["cvc4", "smtlib2", "z3"],

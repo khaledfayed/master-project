@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.1;
-pragma experimental SMTChecker;
 /**
  *Submitted for verification at Etherscan.io on 2016-03-24
 */
@@ -28,14 +27,14 @@ contract HonestDice {
 	uint constant timeout = 20; // 5 Minutes
     uint256 max = 2**256 -1;
 	
-	constructor () public {
+	constructor (){
 		owner = msg.sender;
 		feed = msg.sender;
 	}
 	//
 	function roll(uint chance, bytes32 secretHash) payable public{
 		if (chance < 1 || chance > 255 || msg.value < minimumBet || calcWinnings(msg.value, chance) > getMaxPayout() || betsLocked != 0) { 
-			payable(msg.sender).send(msg.value); // Refund
+			payable(msg.sender).transfer(msg.value); // Refund
 			return;
 		}
 		rolls[msg.sender] = Roll(msg.value, chance, block.number, secretHash, 0);
@@ -49,12 +48,12 @@ contract HonestDice {
 		rolls[user].serverSeed = seed;
 	}
 	//
-	function hashTo256(bytes32 hash) public pure returns (uint _r){
+	function hashTo256(bytes32 _hash) public pure returns (uint _r){
 		// Returns a number between 0 - 255 from a hash
-		return uint(hash) & 0xff;
+		return uint(_hash) & 0xff;
 	}
 	
-	function hash(bytes32 input) public returns (uint _r) {
+	function hash(bytes32 input) public pure returns (uint _r) {
 		// Simple sha3 hash. Not to be called via the blockchain
 		return uint(keccak256(abi.encodePacked(input))); 
 	}
@@ -69,7 +68,7 @@ contract HonestDice {
 		return true;
 	}
 	
-	function getResult(bytes32 secret) public returns (uint _r){
+	function getResult(bytes32 secret) public view returns (uint _r){
 		// Get the result number of the roll
 		Roll memory r = rolls[msg.sender];
 		require(r.serverSeed != 0);
@@ -77,7 +76,7 @@ contract HonestDice {
 		return hashTo256(keccak256(abi.encodePacked(secret, r.serverSeed)));
 	}
 	
-	function didWin(bytes32 secret) public returns (bool _r) {
+	function didWin(bytes32 secret) public view returns (bool _r) {
 		// Returns if the player won or not
 		Roll memory r = rolls[msg.sender];
 		require(r.serverSeed != 0);
@@ -88,7 +87,7 @@ contract HonestDice {
 		return false;
 	}
 	
-	function calcWinnings(uint256 value, uint chance) public view returns (uint256 _r) {
+	function calcWinnings(uint256 value, uint chance) public pure returns (uint256 _r) {
 		// 1% house edge
         // require(value < max);
         // require(chance < max);
@@ -105,7 +104,7 @@ contract HonestDice {
 		if (r.serverSeed == 0) return;
 		if (sha256(secret) != r.secretHash) return;
 		if (hashTo256(sha256(abi.encodePacked(secret, r.serverSeed))) < r.chance) { // Winner
-			payable(msg.sender).send(calcWinnings(r.value, r.chance) - seedCost);
+			payable(msg.sender).transfer(calcWinnings(r.value, r.chance) - seedCost);
 			emit Won(msg.sender, r.value, r.chance);
 		}
 		
@@ -124,7 +123,7 @@ contract HonestDice {
 		// Get your monies back if the server isn't responding with a seed
 		if (!canClaimTimeout()) return;
 		Roll memory r = rolls[msg.sender];
-		payable(msg.sender).send(r.value);
+		payable(msg.sender).transfer(r.value);
 		delete rolls[msg.sender];
 	}
 	

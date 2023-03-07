@@ -1,0 +1,22 @@
+{
+  "settings": {
+    "modelChecker": {
+      "contracts": {
+        "myFile.sol": [
+          "EtherStore"
+        ]
+      },
+      "engine": "bmc",
+      "solvers": [
+        "cvc4",
+        "smtlib2",
+        "z3"
+      ],
+      "targets": [
+        "constantCondition"
+      ],
+      "timeout": 2000,
+      "showUnproved": true
+    }
+  }
+}

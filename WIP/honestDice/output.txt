@@ -1,0 +1,39 @@
+Warning: CHC: Assertion violation might happen here.
+  --> myFile.sol:12:9:
+   |
+12 |         assert(lockedInitial == locked);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: BMC: Assertion violation happens here.
+  --> myFile.sol:12:9:
+   |
+12 |         assert(lockedInitial == locked);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: Counterexample:
+  _hash = 1
+  _r = 0x016345785D8A0001
+  betsLocked = 0
+  chance = 0x016345785D8A5c00
+  feed = 2**160 - 1
+  locked = false
+  lockedInitial = true
+  max = 0
+  maxPayout = 0
+  minimumBet = 0
+  owner = 0
+  seedCost = 0
+  sent = true
+  timeout = 2**256 - 1
+  value = 0x01f204ABeac283C69cda37F56f50
+
+Note: Callstack:
+Note:
+   --> myFile.sol:107:45:
+    |
+107 |   function claim(bytes memory secret) public reentancyLock{
+    |                                              ^^^^^^^^^^^^^
+Note: 
+Note that array aliasing is not supported, therefore all mapping information is erased after a mapping local variable/parameter is assigned.
+You can re-introduce information using require().
+Note that external function calls are not inlined, even if the source code of the function is available. This is due to the possibility that the actual called contract has the same ABI but implements the function differently.

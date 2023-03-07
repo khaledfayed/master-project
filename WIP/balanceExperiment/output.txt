@@ -1,0 +1,23 @@
+Warning: BMC: Insufficient funds happens here.
+  --> myFile.sol:19:9:
+   |
+19 |         payable(msg.sender).transfer(amount);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: Counterexample:
+   = 8365
+  amount = 20976
+  hash = 32285
+  message = 8365
+  nonce = 10450
+  owner = 21238
+  r = 8855
+  s = 2437
+  sig.length = 65
+  this = 66
+  usedNonces[nonce] = false
+  v = 21
+
+Note: Callstack:
+Note: 
+Note that array aliasing is not supported, therefore all mapping information is erased after a mapping local variable/parameter is assigned.
+You can re-introduce information using require().

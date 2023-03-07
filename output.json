@@ -1,4 +1,21 @@
 {
+  "errors":
+  [
+    {
+      "component": "general",
+      "errorCode": "6328",
+      "formattedMessage": "Warning: CHC: Assertion violation might happen here.\n  --> myFile.sol:12:9:\n   |\n12 |         assert(lockedInitial == locked);\n   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n",
+      "message": "CHC: Assertion violation might happen here.",
+      "severity": "warning",
+      "sourceLocation":
+      {
+        "end": 286,
+        "file": "myFile.sol",
+        "start": 255
+      },
+      "type": "Warning"
+    }
+  ],
   "sources":
   {
     "myFile.sol":

@@ -1,0 +1,42 @@
+Warning: CHC: Out of bounds access happens here.
+  --> myFile.sol:70:13:
+   |
+70 |             proposals[delegate_.vote].voteCount += sender.weight;
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: CHC: Empty array "pop" happens here.
+Counterexample:
+chairperson = 0x0, proposals = []
+
+Transaction trace:
+Ballot.constructor([]){ msg.sender: 0x0 }
+State: chairperson = 0x0, proposals = []
+Ballot.removeLastVote()
+  --> myFile.sol:77:9:
+   |
+77 |         proposals.pop();
+   |         ^^^^^^^^^^^^^^^
+
+
+Warning: CHC: Out of bounds access happens here.
+Counterexample:
+chairperson = 0x0, proposals = []
+proposal = 0
+sender = {weight: 1, voted: true, delegate: 0x0, vote: 0}
+
+Transaction trace:
+Ballot.constructor([]){ msg.sender: 0x0 }
+State: chairperson = 0x0, proposals = []
+Ballot.vote(0){ msg.sender: 0x0 }
+  --> myFile.sol:87:9:
+   |
+87 |         proposals[proposal].voteCount += sender.weight;
+   |         ^^^^^^^^^^^^^^^^^^^
+
+
+Warning: CHC: Out of bounds access happens here.
+   --> myFile.sol:105:23:
+    |
+105 |         winnerName_ = proposals[winningProposal()].name;
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

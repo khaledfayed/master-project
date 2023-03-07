@@ -1,0 +1,25 @@
+Warning: CHC: Overflow (resulting value larger than 2**256 - 1) might happen here.
+ --> myFile.sol:9:9:
+  |
+9 |         balances[msg.sender] += msg.value;
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: CHC: Overflow (resulting value larger than 2**256 - 1) happens here.
+Counterexample:
+
+
+Transaction trace:
+TimeLock.constructor()
+TimeLock.deposit(){ block.timestamp: 115792089237316195423570985008687907853269984665640564039457584007913129035136, msg.sender: 0x52f6, msg.value: 1 }
+  --> myFile.sol:10:32:
+   |
+10 |         lockTime[msg.sender] = block.timestamp + 1 weeks;
+   |                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: CHC: Overflow (resulting value larger than 2**256 - 1) might happen here.
+  --> myFile.sol:14:9:
+   |
+14 |         lockTime[msg.sender] += _secondsToIncrease;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

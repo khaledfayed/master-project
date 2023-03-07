@@ -1,0 +1,24 @@
+{
+  "settings": {
+    "modelChecker": {
+      "contracts": {
+        "myFile.sol": [
+          "Ballot"
+        ]
+      },
+      "engine": "chc",
+      "solvers": [
+        "z3"
+      ],
+      "targets": [
+        "popEmptyArray",
+        "outOfBounds"
+      ],
+      "timeout": 2000,
+      "invariants": [
+        "contract"
+      ],
+      "showUnproved": true
+    }
+  }
+}

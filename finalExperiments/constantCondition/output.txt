@@ -1,0 +1,14 @@
+Warning: BMC: Condition is always false.
+  --> myFile.sol:15:12:
+   |
+15 |         if(balance < 0){
+   |            ^^^^^^^^^^^
+Note: Callstack:
+
+
+Warning: BMC: Condition unreachable.
+  --> myFile.sol:18:17:
+   |
+18 |         require(sent, "Failed to send Ether");
+   |                 ^^^^
+Note: Callstack:

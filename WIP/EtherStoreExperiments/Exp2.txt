@@ -1,0 +1,20 @@
+Warning: CHC: Assertion violation happens here.
+Counterexample:
+locked = false
+lockedInitial = true
+
+Transaction trace:
+EtherStore.constructor()
+State: locked = false
+EtherStore.deposit(){ msg.sender: 0x04d6, msg.value: 140 }
+State: locked = false
+EtherStore.deposit(){ msg.sender: 0x04d5, msg.value: 386 }
+State: locked = false
+EtherStore.withdraw(){ msg.sender: 0x04d6 }
+    msg.sender.call{value: balance}("") -- untrusted external call, synthesized as:
+        EtherStore.withdraw(){ msg.sender: 0x04d5 } -- reentrant call
+            msg.sender.call{value: balance}("") -- untrusted external call
+  --> myFile.sol:12:9:
+   |
+12 |         assert(lockedInitial == locked);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

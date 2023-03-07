@@ -1,0 +1,23 @@
+{
+  "settings": {
+    "modelChecker": {
+      "contracts": {
+        "myFile.sol": [
+          "ReceiverPays"
+        ]
+      },
+      "engine": "bmc",
+      "solvers": [
+        "z3"
+      ],
+      "targets": [
+        "balance"
+      ],
+      "timeout": 2000,
+      "invariants": [
+        "contract"
+      ],
+      "showUnproved": true
+    }
+  }
+}

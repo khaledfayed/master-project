@@ -1,12 +1,4 @@
 {
-  "language": "Solidity",
-  "sources": {
-    "myFile.sol": {
-      "urls": [
-        "/home/khaled/Uni/Project/master-project/honestDice/HonestDice.sol"
-      ]
-    }
-  },
   "settings": {
     "modelChecker": {
       "contracts": {
@@ -21,7 +13,7 @@
       "targets": [
         "assert"
       ],
-      "timeout": 2000000,
+      "timeout": 1000000,
       "showUnproved": true
     }
   }

@@ -1,0 +1,25 @@
+{
+  "settings": {
+    "modelChecker": {
+      "contracts": {
+        "myFile.sol": [
+          "TimeLock"
+        ]
+      },
+      "engine": "chc",
+      "solvers": [
+        "z3"
+      ],
+      "targets": [
+        "overflow",
+        "underflow",
+        "divByZero"
+      ],
+      "timeout": 2000,
+      "invariants": [
+        "contract"
+      ],
+      "showUnproved": true
+    }
+  }
+}

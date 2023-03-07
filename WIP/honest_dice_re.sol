@@ -43,7 +43,7 @@ contract HonestDice {
 	
 	function serverSeed(address user, bytes32 seed) public{
 		// The server calls this with a random seed
-		if (msg.sender != feed) return;
+		require(msg.sender == feed && seed != 0); //require that seed not equal zero
 		if (rolls[user].serverSeed != 0) return;
 		rolls[user].serverSeed = seed;
 	}
@@ -101,13 +101,13 @@ contract HonestDice {
 	
 	function claim(bytes memory secret) public{
 		Roll memory r = rolls[msg.sender];
-		if (r.serverSeed == 0) return;
-		if (sha256(secret) != r.secretHash) return;
+		address feedPre = feed;
+		require(r.serverSeed != 0 && sha256(secret) == r.secretHash);
 		if (hashTo256(sha256(abi.encodePacked(secret, r.serverSeed))) < r.chance) { // Winner
-			payable(msg.sender).transfer(calcWinnings(r.value, r.chance) - seedCost);
+			msg.sender.call{value: (calcWinnings(r.value, r.chance) - seedCost)}("");
 			emit Won(msg.sender, r.value, r.chance);
 		}
-		
+		assert(feed == feedPre);
 		delete rolls[msg.sender];
 	}
 	
@@ -121,7 +121,7 @@ contract HonestDice {
 	//
 	function claimTimeout() public{
 		// Get your monies back if the server isn't responding with a seed
-		if (!canClaimTimeout()) return;
+		require(canClaimTimeout());
 		Roll memory r = rolls[msg.sender];
 		payable(msg.sender).transfer(r.value);
 		delete rolls[msg.sender];
@@ -140,22 +140,22 @@ contract HonestDice {
 	}
 	//
 	function setFeed(address newFeed) public{
-		if (msg.sender != owner) return;
+		// require(msg.sender == owner);
 		feed = newFeed;
 	}
 	//
 	function lockBetsForWithdraw() public{
-		if (msg.sender != owner) return;
+		require(msg.sender == owner);
 		betsLocked = block.number;
 	}
 	
 	function unlockBets() public{
-		if (msg.sender != owner) return;
+		require(msg.sender == owner);
 		betsLocked = 0;
 	}
 	
 	function withdraw(uint amount) public{
-		if (msg.sender != owner) return;
+		require(msg.sender == owner);
 		if (betsLocked == 0 || block.number < betsLocked + 5760) return;
 		payable(address(owner)).transfer(amount);
 	}

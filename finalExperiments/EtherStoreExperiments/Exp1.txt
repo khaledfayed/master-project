@@ -1,0 +1,17 @@
+Warning: CHC: Assertion violation happens here.
+Counterexample:
+
+balance = 6812
+sent = true
+
+Transaction trace:
+EtherStore.constructor()
+EtherStore.deposit(){ msg.sender: 0x175d, msg.value: 6812 }
+EtherStore.getBalance()
+EtherStore.withdraw(){ msg.sender: 0x175d }
+    msg.sender.call{value: balance}("") -- untrusted external call, synthesized as:
+        EtherStore.deposit(){ msg.sender: 0x175d, msg.value: 992 } -- reentrant call
+  --> myFile.sol:18:9:
+   |
+18 |         assert(balance == balances[msg.sender]);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
